@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var USER_DIALOG_STYLE_TOP = '80px';
+  var USER_DIALOG_STYLE_LEFT = '50%';
   var userDialog = document.querySelector('.setup');
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
@@ -22,6 +24,7 @@
 
   var openPopup = function () {
     userDialog.classList.remove('hidden');
+    returnSetupStartPosition(userDialog);
     document.addEventListener('keydown', onPopupEscPress);
   };
 
@@ -101,6 +104,9 @@
       draggedItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
+    artifactsElement.style.outlineColor = 'red';
+    artifactsElement.style.outlineStyle = 'dashed';
+    artifactsElement.style.outlineWidth = '2px';
   });
 
   var artifactsElement = document.querySelector('.setup-artifacts');
@@ -126,4 +132,10 @@
     evt.target.style.backgroundColor = '';
     evt.preventDefault();
   });
+
+  // возвращаем окну начальные координаты
+  var returnSetupStartPosition = function (userDialog) {
+    userDialog.style.top = USER_DIALOG_STYLE_TOP;
+    userDialog.style.left = USER_DIALOG_STYLE_LEFT;
+  };
 })();
