@@ -99,24 +99,30 @@
   var shopElement = document.querySelector('.setup-artifacts-shop');
   var draggedItem = null;
 
+  var renderOutline = function(color, style, width) {
+    artifactsElement.style.outlineColor = color;
+    artifactsElement.style.outlineStyle = style;
+    artifactsElement.style.outlineWidth = width;
+  };
+
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggedItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
-    artifactsElement.style.outlineColor = 'red';
-    artifactsElement.style.outlineStyle = 'dashed';
-    artifactsElement.style.outlineWidth = '2px';
+    renderOutline('red', 'dashed', '2px');
   });
 
   var artifactsElement = document.querySelector('.setup-artifacts');
 
   artifactsElement.addEventListener('dragover', function (evt) {
+    renderOutline('', '', '');
     evt.preventDefault();
     return false;
   });
 
   artifactsElement.addEventListener('drop', function (evt) {
+    renderOutline('', '', '');
     evt.target.style.backgroundColor = '';
     evt.target.appendChild(draggedItem);
     evt.preventDefault();
