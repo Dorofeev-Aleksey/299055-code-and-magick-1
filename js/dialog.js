@@ -99,7 +99,7 @@
   var shopElement = document.querySelector('.setup-artifacts-shop');
   var draggedItem = null;
 
-  var renderOutline = function(color, style, width) {
+  var renderOutline = function (color, style, width) {
     artifactsElement.style.outlineColor = color;
     artifactsElement.style.outlineStyle = style;
     artifactsElement.style.outlineWidth = width;
@@ -111,6 +111,10 @@
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
     renderOutline('red', 'dashed', '2px');
+  });
+
+  window.addEventListener('mouseup', function () {
+    renderOutline('', '', '');
   });
 
   var artifactsElement = document.querySelector('.setup-artifacts');
@@ -140,7 +144,7 @@
   });
 
   // возвращаем окну начальные координаты
-  var returnSetupStartPosition = function (userDialog) {
+  var returnSetupStartPosition = function () {
     userDialog.style.top = USER_DIALOG_STYLE_TOP;
     userDialog.style.left = USER_DIALOG_STYLE_LEFT;
   };
