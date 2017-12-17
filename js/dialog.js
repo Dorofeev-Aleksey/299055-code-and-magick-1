@@ -113,6 +113,10 @@
     renderOutline('red', 'dashed', '2px');
   });
 
+  window.addEventListener('mouseup', function() {
+    renderOutline('', '', '');
+  });
+
   var artifactsElement = document.querySelector('.setup-artifacts');
 
   artifactsElement.addEventListener('dragover', function (evt) {

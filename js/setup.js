@@ -32,19 +32,21 @@
   }
   similarListElement.appendChild(fragment);
 
+  // Смена цветов частей волшебника по клику
+
   var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
   var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
   var fireballWrap = document.querySelector('.setup-fireball-wrap');
 
-  wizardCoat.addEventListener('click', function () {
-    wizardCoat.style.fill = window.util.getRandomItem(window.util.COLOR_COAT);
-  });
+  var fillElement = function (element, color) {
+    element.style.fill = color;
+  };
 
-  wizardEyes.addEventListener('click', function () {
-    wizardEyes.style.fill = window.util.getRandomItem(window.util.COLOR_EYES);
-  });
+  var changeElementBackground = function (element, color) {
+    element.style.backgroundColor = color;
+  };
 
-  fireballWrap.addEventListener('click', function () {
-    fireballWrap.style.backgroundColor = window.util.getRandomItem(window.util.COLOR_FIREBALLS);
-  });
+  window.colorizeElement(wizardCoat, window.util.COLOR_COAT, fillElement);
+  window.colorizeElement(wizardEyes, window.util.COLOR_EYES, fillElement);
+  window.colorizeElement(fireballWrap, window.util.COLOR_FIREBALLS, changeElementBackground);
 })();
