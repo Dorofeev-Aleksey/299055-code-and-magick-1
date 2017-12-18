@@ -28,7 +28,7 @@
   var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
     for (i = 0; i < WIZARDS_COUNT; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+      fragment.appendChild(renderWizard(window.util.getRandomItem(wizards)));
     }
     similarListElement.appendChild(fragment);
   };
