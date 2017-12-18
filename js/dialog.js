@@ -148,4 +148,10 @@
     userDialog.style.top = USER_DIALOG_STYLE_TOP;
     userDialog.style.left = USER_DIALOG_STYLE_LEFT;
   };
+
+  var form = document.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(form), window.backend.onSuccess, window.backend.errorHandler);
+  });
 })();
