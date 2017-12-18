@@ -5,7 +5,7 @@
   var userDialog = document.querySelector('.setup');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-
+  var WIZARDS_COUNT = 4;
   var wizards = [];
 
   for (var i = 0; i < 4; i++) {
@@ -20,18 +20,20 @@
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
+  var successHandler = function (regularWizards) {
+    var fragment = document.createDocumentFragment();
+    for (i = 0; i < WIZARDS_COUNT; i++) {
+      fragment.appendChild(renderWizard(window.util.getRandomItem(regularWizards)));
+    }
+    similarListElement.appendChild(fragment);
+  };
 
-  var fragment = document.createDocumentFragment();
-  for (i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
-  }
-  similarListElement.appendChild(fragment);
-
+  window.backend.load(successHandler, window.backend.errorHandler);
   // Смена цветов частей волшебника по клику
 
   var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
