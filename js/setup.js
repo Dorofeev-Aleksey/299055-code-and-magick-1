@@ -25,10 +25,10 @@
 
     return wizardElement;
   };
-  var successHandler = function (wizards) {
+  var successHandler = function (regularWizards) {
     var fragment = document.createDocumentFragment();
     for (i = 0; i < WIZARDS_COUNT; i++) {
-      fragment.appendChild(renderWizard(window.util.getRandomItem(wizards)));
+      fragment.appendChild(renderWizard(window.util.getRandomItem(regularWizards)));
     }
     similarListElement.appendChild(fragment);
   };
